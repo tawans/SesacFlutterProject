@@ -1,4 +1,4 @@
-import 'package:book_loan_app/liberaryManager.dart';
+import 'package:book_loan_app/liberary_manager.dart';
 import 'package:book_loan_app/register_screen.dart';
 import 'package:flutter/material.dart';
 

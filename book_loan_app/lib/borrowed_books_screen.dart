@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'Model/book.dart';
-import 'liberaryManager.dart';
+import 'liberary_manager.dart';
 
 class BorrowedBooksScreen extends StatelessWidget {
   final LibraryManager libraryManager;
