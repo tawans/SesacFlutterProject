@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/result/result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -98,15 +97,13 @@ class _MainScreenState extends State<MainScreen> {
 
                   save();
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ResultScreen(
-                        height: double.parse(_heightController.text),
-                        weight: double.parse(_weightController.text),
-                      ),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => ResultScreen(
+                  //     ),
+                  //   ),
+                  // );
                 },
                 child: const Text('결과'),
               ),
