@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:pixarbay_api/image_api.dart';
+import 'package:pixarbay_api/model/hits.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -8,268 +11,109 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final api = ImageApi();
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+
+  void _onSearchSubmitted() {
+    _searchQuery = _searchController.text;
+    _loadImages();
+  }
+
+  Future<void> _loadImages() async {
+    try {
+      List<Hits> images = await api.getImages(_searchQuery);
+      setState(() {});
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('')),
-        body: Container(
-          width: 428,
-          height: 926,
-          clipBehavior: Clip.antiAlias,
-          decoration: const BoxDecoration(color: Colors.white),
-          child: Stack(
-            children: [
-              Positioned(
-                left: 30,
-                top: 106,
-                child: Container(
-                  width: 368,
-                  height: 789,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: const BoxDecoration(),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 200,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 400,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 600,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 0,
-                        top: 800,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 202,
-                        top: 0,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 202,
-                        top: 200,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 202,
-                        top: 400,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 202,
-                        top: 600,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 202,
-                        top: 800,
-                        child: Container(
-                          width: 166,
-                          height: 166,
-                          decoration: ShapeDecoration(
-                            image: const DecorationImage(
-                              image: NetworkImage(
-                                  "https://via.placeholder.com/166x166"),
-                              fit: BoxFit.fill,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+      appBar: AppBar(title: const Text('PixarBay API')),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 20.0),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(width: 3, color: Colors.greenAccent),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                ),
-              ),
-              Positioned(
-                left: 30,
-                top: 33,
-                child: Container(
-                  width: 368,
-                  height: 49,
-                  decoration: ShapeDecoration(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      side:
-                          const BorderSide(width: 1, color: Color(0xFF4FB6B2)),
-                      borderRadius: BorderRadius.circular(10),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(width: 3, color: Colors.greenAccent),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  suffixIcon: GestureDetector(
+                    onTap: _onSearchSubmitted,
+                    child: const Icon(
+                      color: (Colors.greenAccent),
+                      Icons.search,
                     ),
                   ),
                 ),
               ),
-              const Positioned(
-                left: 43,
-                top: 44,
-                child: SizedBox(
-                  width: 138,
-                  height: 37,
-                  child: Text(
-                    'Search',
-                    style: TextStyle(
-                      color: Color(0xFFD9D9D9),
-                      fontSize: 24,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 361,
-                top: 45,
-                child: SizedBox(
-                  width: 24,
-                  height: 24,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        left: 0,
-                        top: 0,
-                        child: Container(
-                          width: 24,
-                          height: 24,
-                          decoration:
-                              const BoxDecoration(color: Color(0xFFD9D9D9)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ));
+          Expanded(
+            child: FutureBuilder(
+              future: api.getImages(_searchQuery),
+              initialData: const [],
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+
+                final images = snapshot.data;
+
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemCount: images.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final imageUrl = images[index].webformatURL;
+                    return GestureDetector(
+                      onTap: () {
+                        context.push('/detail');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Hero(
+                          tag: NetworkImage(imageUrl),
+                          child: Container(
+                            width: 166,
+                            height: 166,
+                            decoration: ShapeDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(imageUrl),
+                                fit: BoxFit.fill,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
