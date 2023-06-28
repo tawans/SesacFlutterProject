@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
               'assets/images/youtube_logo.png',
               width: 100,
             ),
-            const SizedBox(width: 140),
+            const Spacer(),
             Image.asset(
               'assets/images/cast.png',
               width: 25,
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 3,
+              itemCount: 10,
               itemBuilder: (context, index) {
                 return Container(
                   color: Colors.black,
@@ -82,6 +82,7 @@ class HomePage extends StatelessWidget {
                       Image.asset(
                         'assets/images/video_3.png',
                         fit: BoxFit.cover,
+                        width: double.infinity,
                         height: 220,
                       ),
                       ListTile(
@@ -89,7 +90,6 @@ class HomePage extends StatelessWidget {
                         leading: ClipOval(
                           child: Image.asset(
                             'assets/images/jjang.jpg',
-                            fit: BoxFit.cover,
                             width: 50,
                           ),
                         ),
