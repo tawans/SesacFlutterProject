@@ -11,7 +11,10 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/detail',
-      builder: (context, state) => const DetailScreen(),
+      builder: (context, state) {
+        final imageUrl = state.queryParameters['imageUrl']!;
+        return DetailScreen(imageUrl: imageUrl);
+      },
     ),
   ],
 );

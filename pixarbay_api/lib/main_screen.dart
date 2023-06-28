@@ -22,11 +22,24 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> _loadImages() async {
     try {
-      List<Hits> images = await api.getImages(_searchQuery);
       setState(() {});
     } catch (error) {
       print(error);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    //
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -66,34 +79,40 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           Expanded(
-            child: FutureBuilder(
+            child: FutureBuilder<List<Hits>>(
               future: api.getImages(_searchQuery),
               initialData: const [],
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
+              builder:
+                  (BuildContext context, AsyncSnapshot<List<Hits>> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 }
 
-                final images = snapshot.data;
+                if (!snapshot.hasData) {
+                  return const Text('NO Data');
+                }
+
+                final images = snapshot.data!;
 
                 return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
+                    childAspectRatio: 1 / 1.2,
                   ),
                   itemCount: images.length,
                   itemBuilder: (BuildContext context, int index) {
                     final imageUrl = images[index].webformatURL;
                     return GestureDetector(
                       onTap: () {
-                        context.push('/detail');
+                        context.push(Uri(path: '/detail', queryParameters: {
+                          'imageUrl': imageUrl,
+                        }).toString());
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Hero(
-                          tag: NetworkImage(imageUrl),
+                          tag: imageUrl,
                           child: Container(
-                            width: 166,
-                            height: 166,
                             decoration: ShapeDecoration(
                               image: DecorationImage(
                                 image: NetworkImage(imageUrl),
