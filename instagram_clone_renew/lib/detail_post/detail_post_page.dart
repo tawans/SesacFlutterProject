@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone_renew/detail_post/detail_post_model.dart';
+import 'package:instagram_clone_renew/detail_post/detail_post_view_model.dart';
+import 'package:instagram_clone_renew/domain/post.dart';
 
-import '../domain/post.dart';
+class DetailPostPage extends StatefulWidget {
+  const DetailPostPage({super.key, required Post post});
 
-class DetailPostPage extends StatelessWidget {
-  final Post post;
+  @override
+  State<DetailPostPage> createState() => _DetailPostPageState();
+}
 
-  const DetailPostPage({super.key, required this.post});
+class _DetailPostPageState extends State<DetailPostPage> {
+  final viewModel = DetailViewModel();
 
   @override
   Widget build(BuildContext context) {
-    final model = DetailPostModel();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('둘러보기'),
@@ -24,7 +26,7 @@ class DetailPostPage extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: NetworkImage(model.getPhotoImageUrl()),
+                  backgroundImage: viewModel.getPhotoImageUrl(),
                 ),
                 const SizedBox(
                   width: 8,
@@ -33,21 +35,20 @@ class DetailPostPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      model.getEmail(),
+                      viewModel.getEmail(),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(model.getNickName()),
+                    Text(viewModel.getNickName()),
                   ],
                 )
               ],
             ),
           ),
           Hero(
-              tag: post.id,
-              child: Image.network(
-                post.imageUrl,
-              )),
-          Text(post.title),
+            tag: viewModel.getPostId(),
+            child: viewModel.getPostImageUrl(),
+          ),
+          Text(viewModel.getPostTitle()),
         ],
       ),
     );

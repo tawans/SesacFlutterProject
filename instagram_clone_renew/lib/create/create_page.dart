@@ -1,7 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:instagram_clone_renew/create/create_model.dart';
+import 'package:instagram_clone_renew/create/create_view_model.dart';
 
 class CreatePage extends StatefulWidget {
   const CreatePage({super.key});
@@ -11,17 +9,11 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  final model = CreateModel();
-
-  final _titleTextController = TextEditingController();
-
-  File? _image;
-
-  bool isLoading = false;
+  final viewModel = CreateViewModel();
 
   @override
   void dispose() {
-    _titleTextController.dispose();
+    viewModel.titleTextController.dispose();
     super.dispose();
   }
 
@@ -34,18 +26,19 @@ class _CreatePageState extends State<CreatePage> {
         actions: [
           IconButton(
             onPressed: () async {
-              if (_image != null && _titleTextController.text.isNotEmpty) {
+              if (viewModel.image != null &&
+                  viewModel.titleTextController.text.isNotEmpty) {
                 setState(() {
-                  isLoading = true;
+                  viewModel.isLoading = true;
                 });
 
-                await model.uploadPost(
-                  _titleTextController.text,
-                  _image!,
+                await viewModel.uploadPost(
+                  viewModel.titleTextController.text,
+                  viewModel.image!,
                 );
 
                 setState(() {
-                  isLoading = false;
+                  viewModel.isLoading = false;
                 });
 
                 if (mounted) {
@@ -63,7 +56,7 @@ class _CreatePageState extends State<CreatePage> {
           child: Column(
             children: [
               TextField(
-                controller: _titleTextController,
+                controller: viewModel.titleTextController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -75,20 +68,16 @@ class _CreatePageState extends State<CreatePage> {
               const SizedBox(
                 height: 20,
               ),
-              if (isLoading) const CircularProgressIndicator(),
+              if (viewModel.isLoading) const CircularProgressIndicator(),
               ElevatedButton(
                 onPressed: () async {
-                  _image = await model.getImage();
+                  viewModel.image = await viewModel.getImage();
 
                   setState(() {});
                 },
                 child: const Text('이미지 선택'),
               ),
-              if (_image != null)
-                Image.file(
-                  _image!,
-                  width: 300,
-                ),
+              if (viewModel.image != null) viewModel.getImageFile()
             ],
           ),
         ),

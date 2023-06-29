@@ -21,3 +21,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// initstate 는 슈퍼보다 뒤에 dispose는 슈퍼보다 앞에
