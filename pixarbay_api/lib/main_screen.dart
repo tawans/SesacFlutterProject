@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pixarbay_api/image_api.dart';
 import 'package:pixarbay_api/model/hits.dart';
+import 'package:pixarbay_api/view_model/main_view_model.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -11,39 +12,22 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final api = ImageApi();
-  final TextEditingController _searchController = TextEditingController();
-  String _searchQuery = '';
-
-  void _onSearchSubmitted() {
-    _searchQuery = _searchController.text;
-    _loadImages();
-  }
-
-  Future<void> _loadImages() async {
-    try {
-      setState(() {});
-    } catch (error) {
-      print(error);
-    }
-  }
+  final TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-
-    //
   }
 
   @override
   void dispose() {
-    _searchController.dispose();
-
+    searchController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = Provider.of<MainViewModel>(context);
     return Scaffold(
       appBar: AppBar(title: const Text('PixarBay API')),
       body: Column(
@@ -52,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               child: TextField(
-                controller: _searchController,
+                controller: searchController,
                 decoration: InputDecoration(
                   hintText: 'Search',
                   contentPadding: const EdgeInsets.symmetric(
@@ -68,7 +52,9 @@ class _MainScreenState extends State<MainScreen> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   suffixIcon: GestureDetector(
-                    onTap: _onSearchSubmitted,
+                    onTap: () {
+                      viewModel.onSearchSubmitted(searchController.text);
+                    },
                     child: const Icon(
                       color: (Colors.greenAccent),
                       Icons.search,
@@ -80,7 +66,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           Expanded(
             child: FutureBuilder<List<Hits>>(
-              future: api.getImages(_searchQuery),
+              future: viewModel.getImages(searchController.text),
               initialData: const [],
               builder:
                   (BuildContext context, AsyncSnapshot<List<Hits>> snapshot) {

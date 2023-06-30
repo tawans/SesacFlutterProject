@@ -15,10 +15,6 @@ class DetailScreen extends StatelessWidget {
         title: const Text('Image Detail'),
       ),
       body: Center(
-        // child: Text(
-        //   'Image Detail',
-        //   style: TextStyle(fontSize: 24),
-        // ),
         child: Hero(
           tag: imageUrl,
           child: Image.network(imageUrl),
