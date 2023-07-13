@@ -20,12 +20,14 @@ Station _$StationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Station {
-  String get subwayLineId => throw _privateConstructorUsedError;
-  String get trainLineName => throw _privateConstructorUsedError;
-  String get subwayName => throw _privateConstructorUsedError;
-  String get arvlTime => throw _privateConstructorUsedError;
-  String get arvlMsgFirst => throw _privateConstructorUsedError;
-  String get arvlMsgSecond => throw _privateConstructorUsedError;
+  String get subwayLineId => throw _privateConstructorUsedError; // 지하철 호선 ID
+  String get trainLineName => throw _privateConstructorUsedError; // 지하철 호선 이름
+  String get subwayName => throw _privateConstructorUsedError; // 지하철 역 이름
+  String get arvlTime => throw _privateConstructorUsedError; // 도착 예정 시간
+  String get arvlMsgFirst => throw _privateConstructorUsedError; // 첫번째 도착 메시지
+  String get arvlMsgSecond => throw _privateConstructorUsedError; // 두번째 도착 메시지
+// 도착코드
+//(0:진입, 1:도착, 2:출발, 3:전역출발, 4:전역진입, 5:전역도착, 99:운행중)
   String get arvlCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -187,16 +189,24 @@ class _$_Station implements _Station {
 
   @override
   final String subwayLineId;
+// 지하철 호선 ID
   @override
   final String trainLineName;
+// 지하철 호선 이름
   @override
   final String subwayName;
+// 지하철 역 이름
   @override
   final String arvlTime;
+// 도착 예정 시간
   @override
   final String arvlMsgFirst;
+// 첫번째 도착 메시지
   @override
   final String arvlMsgSecond;
+// 두번째 도착 메시지
+// 도착코드
+//(0:진입, 1:도착, 2:출발, 3:전역출발, 4:전역진입, 5:전역도착, 99:운행중)
   @override
   final String arvlCode;
 
@@ -259,17 +269,19 @@ abstract class _Station implements Station {
 
   @override
   String get subwayLineId;
-  @override
+  @override // 지하철 호선 ID
   String get trainLineName;
-  @override
+  @override // 지하철 호선 이름
   String get subwayName;
-  @override
+  @override // 지하철 역 이름
   String get arvlTime;
-  @override
+  @override // 도착 예정 시간
   String get arvlMsgFirst;
-  @override
+  @override // 첫번째 도착 메시지
   String get arvlMsgSecond;
-  @override
+  @override // 두번째 도착 메시지
+// 도착코드
+//(0:진입, 1:도착, 2:출발, 3:전역출발, 4:전역진입, 5:전역도착, 99:운행중)
   String get arvlCode;
   @override
   @JsonKey(ignore: true)
