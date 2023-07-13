@@ -33,7 +33,8 @@ dependencies:
     sdk: flutter
   freezed: ^2.4.1
   http: ^1.1.0
-  json_annotation: ^4.0.1
+  json_annotation: ^4.8.1
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_lints: ^2.0.0
