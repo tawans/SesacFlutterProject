@@ -21,6 +21,8 @@ Station _$StationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Station {
   String get subwayLineId => throw _privateConstructorUsedError; // 지하철 호선 ID
+//(1001:1호선, 1002:2호선, 1003:3호선, 1004:4호선, 1005:5호선 1006:6호선, 1007:7호선, 1008:8호선, 1009:9호선,
+//1061:중앙선1063:경의중앙선, 1065:공항철도, 1067:경춘선, 1075:수의분당선 1077:신분당선, 1092:우이신설선)
   String get trainLineName => throw _privateConstructorUsedError; // 지하철 호선 이름
   String get subwayName => throw _privateConstructorUsedError; // 지하철 역 이름
   String get arvlTime => throw _privateConstructorUsedError; // 도착 예정 시간
@@ -190,6 +192,8 @@ class _$_Station implements _Station {
   @override
   final String subwayLineId;
 // 지하철 호선 ID
+//(1001:1호선, 1002:2호선, 1003:3호선, 1004:4호선, 1005:5호선 1006:6호선, 1007:7호선, 1008:8호선, 1009:9호선,
+//1061:중앙선1063:경의중앙선, 1065:공항철도, 1067:경춘선, 1075:수의분당선 1077:신분당선, 1092:우이신설선)
   @override
   final String trainLineName;
 // 지하철 호선 이름
@@ -270,6 +274,8 @@ abstract class _Station implements Station {
   @override
   String get subwayLineId;
   @override // 지하철 호선 ID
+//(1001:1호선, 1002:2호선, 1003:3호선, 1004:4호선, 1005:5호선 1006:6호선, 1007:7호선, 1008:8호선, 1009:9호선,
+//1061:중앙선1063:경의중앙선, 1065:공항철도, 1067:경춘선, 1075:수의분당선 1077:신분당선, 1092:우이신설선)
   String get trainLineName;
   @override // 지하철 호선 이름
   String get subwayName;
