@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:subway_clean/core/result.dart';
-import 'package:subway_clean/domain/use_case/get_station_use_case.dart';
+import 'package:subway_clean/domain/use_case/get_stations_use_case.dart';
 import 'package:subway_clean/presentation/main_state.dart';
 import 'package:subway_clean/presentation/main_ui_event.dart';
 
